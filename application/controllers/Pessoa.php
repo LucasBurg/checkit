@@ -15,28 +15,27 @@ class Pessoa extends CI_Controller
     //retorna um formulario
     public function index()
     {
-        
         if ($this->input->method() === 'post') {
-           
             $this->load->library('form_validation');
             $this->form_validation->set_rules('nom', 'Nome', 'required|max_length[45]');
 
             if ($this->form_validation->run()) {
-            
                 //salva os dados
-                //redireciona para uma pagina de sucesso
-
-                redirect(base_url('sucesso?cadastro=true'));
+                $this->load->model('pessoa_model', 'psm');
                 
+                //data bind
+                $data_bind = array(
+                    'nom' => $this->input->post('nom'),
+                    'sen' => $this->input->post('sen'),
+                );
+
+                if ($this->psm->salvar($data_bind)) {
+                    //redireciona para uma pagina de sucesso
+                    redirect(base_url('sucesso?cadastro=true'));
+                }
             }
-
-            
-
-
-            
         }
-
-
+        
         $this->template->show('pessoa', 'form');
     }
 
