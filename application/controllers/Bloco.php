@@ -36,10 +36,6 @@ class Bloco extends CI_Controller
 
     public function list()
     {
-        if ($this->input->is_ajax_request()) {
-            //retorna objeto json
-        }
-
         //retorna a view
         $this->template->add_js(base_url('assets/js/jquery-3.2.1.min.js'));
         $this->template->add_js(base_url('assets/js/bloco/list.js'));
@@ -73,6 +69,21 @@ class Bloco extends CI_Controller
         show_404();
     }
 
-    
-
+    public function excluir($id = null) 
+    {
+        if ($this->input->method() == 'post') {
+            $this->load->model('bloco_model', 'bm');
+            if ($this->bm->excluir($this->input->post('id'))) {
+                redirect('/bloco/list');
+            }
+        }
+        if (is_numeric($id)) {
+            $this->load->model('bloco_select_model', 'bsm');
+            $bloco = $this->bsm->fetch_one($id);
+            $data['id'] = $bloco['id'];
+            $data['descricao'] = $bloco['id'].' - '.$bloco['nom'];
+            
+        }
+        $this->template->show('bloco', 'exclui',  $data);
+    }
 }
