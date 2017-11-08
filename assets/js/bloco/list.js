@@ -16,18 +16,15 @@ function fail_list_bloco(error) {
 
 function render_list_bloco(response) {
     if (response.valid) {
-        $msg.text(response.msg);
-        $table_content.empty();
-        $.each(response.data, function(i, e){
+        $msg.hide().text(response.msg).fadeIn();
+        $table_content.empty().hide().fadeIn();
+        $.each(response.data, function (i, e) {
             var $tr = $('<tr/>');
             $tr.append($('<td/>').text(e.id));
             $tr.append($('<td/>').text(e.nom));
-
             $a_editar = $('<a/>').prop('href','/bloco/'+e.id).text('Editar');
             $a_excluir = $('<a/>').prop('href','/bloco/excluir/'+e.id).text('Excluir');
-
             $tr.append($('<td/>').html([$a_editar, ' / ', $a_excluir]));
-
             $table_content.append($tr);
         });
     }
