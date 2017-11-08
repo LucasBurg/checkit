@@ -20,7 +20,6 @@ class Bloco extends CI_Controller
         //retorna a view
         $this->template->add_js(base_url('assets/js/jquery-3.2.1.min.js'));
         $this->template->add_js(base_url('assets/js/bloco/list.js'));
-        
         $this->template->show('bloco', 'list');
     }
 

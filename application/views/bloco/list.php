@@ -1,3 +1,6 @@
+<h3>Lista de Blocos</h3>
+<?= anchor(base_url('bloco'), 'Novo') ?>
+<p id="msg"></p>
 <table border="1" width="100%">
 <thead>
 <tr>
