@@ -8,7 +8,22 @@ class Bloco extends CI_Controller
 
     public function index()
     {
-        show_404();
+        
+        if ($this->input->method() === 'post') {
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('nom', 'Nome', 'required');
+            
+            if ($this->form_validation->run()) {
+                $data_bind = array(
+                    'nom' => $this->input->post('nom')        
+                );
+                $this->load->model('bloco_model', 'bm');
+                if ($this->bm->salvar($data_bind)) {
+                    redirect('/bloco/list');
+                }
+            }
+        }
+        $this->template->show('bloco', 'form');    
     }
 
     public function list()
