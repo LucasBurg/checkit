@@ -16,8 +16,8 @@ function fail_list_bloco(error) {
 
 function render_list_bloco(response) {
     if (response.valid) {
-        $msg.hide().text(response.msg).fadeIn();
-        $table_content.empty().hide().fadeIn();
+        $msg.hide().text(response.msg).fadeIn(600);
+        $table_content.empty().hide().fadeIn(600);
         $.each(response.data, function (i, e) {
             var $tr = $('<tr/>');
             $tr.append($('<td/>').text(e.id));
