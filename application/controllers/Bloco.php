@@ -6,24 +6,32 @@ class Bloco extends CI_Controller
         parent::__construct();
     }
 
-    public function index()
+    public function index($id = null)
     {
-        
         if ($this->input->method() === 'post') {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('nom', 'Nome', 'required');
             
             if ($this->form_validation->run()) {
+                $id = $this->input->post('id');
                 $data_bind = array(
                     'nom' => $this->input->post('nom')        
                 );
                 $this->load->model('bloco_model', 'bm');
-                if ($this->bm->salvar($data_bind)) {
+                if ($this->bm->salvar($data_bind, $id)) {
                     redirect('/bloco/list');
                 }
             }
         }
-        $this->template->show('bloco', 'form');    
+
+        $data = array('bloco' => null);
+        
+        if (is_numeric($id)) {
+            $this->load->model('bloco_select_model', 'bsm');
+            $data['bloco'] = $this->bsm->fetch_one($id);
+        }
+
+        $this->template->show('bloco', 'form', $data);    
     }
 
     public function list()
