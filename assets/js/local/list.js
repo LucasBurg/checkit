@@ -21,7 +21,7 @@ function render_list_local(response) {
         $.each(response.data, function (i, e) {
             var $tr = $('<tr/>');
             $tr.append($('<td/>').text(e.id));
-            $tr.append($('<td/>').text(e.nome));
+            $tr.append($('<td/>').text(e.nom));
             $a_editar = $('<a/>').prop('href','/local/'+e.id).text('Editar');
             $a_excluir = $('<a/>').prop('href','/local/excluir/'+e.id).text('Excluir');
             $tr.append($('<td/>').html([$a_editar, ' / ', $a_excluir]));

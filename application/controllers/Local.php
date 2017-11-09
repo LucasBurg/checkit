@@ -16,7 +16,7 @@ class Local extends CI_Controller
                 $id = $this->input->post('id');
 
                 $data_bind = array(
-                    'nome' => $this->input->post('nom')
+                    'nom' => $this->input->post('nom')
                 );
 
                 $this->load->model('Local_model');
@@ -83,7 +83,7 @@ class Local extends CI_Controller
             $this->load->model('Local_model_select', 'lsm');
             $local = $this->lsm->fetch_one($id);
             $data['id'] = $local['id'];
-            $data['descricao'] = $local['id'].' - '.$local['nome'];
+            $data['descricao'] = $local['id'].' - '.$local['nom'];
 
         }
         $this->template->show('local', 'exclui',  $data);
