@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['bloco/(:num)'] = 'bloco/index/$1';
+$route['unidade/(:num)'] = 'unidade/index/$1';
