@@ -1,5 +1,5 @@
-<?php 
-class Bloco extends CI_Controller 
+<?php
+class Bloco extends CI_Controller
 {
     public function __construct()
     {
@@ -11,7 +11,7 @@ class Bloco extends CI_Controller
         if ($this->input->method() === 'post') {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('nom', 'Nome', 'required');
-            
+
             if ($this->form_validation->run()) {
                 $id = $this->input->post('id');
                 $data_bind = array(
@@ -25,13 +25,13 @@ class Bloco extends CI_Controller
         }
 
         $data = array('bloco' => null);
-        
+
         if (is_numeric($id)) {
             $this->load->model('bloco_select_model', 'bsm');
             $data['bloco'] = $this->bsm->fetch_one($id);
         }
 
-        $this->template->show('bloco', 'form', $data);    
+        $this->template->show('bloco', 'form', $data);
     }
 
     public function list()
@@ -61,15 +61,15 @@ class Bloco extends CI_Controller
             $this->response->set_data($blocos);
             $this->response->set_valid(true);
             $this->response->set_msg($msg);
-        
-            return $this->response->get_res_json(); 
+
+            return $this->response->get_res_json();
 
         }
 
         show_404();
     }
 
-    public function excluir($id = null) 
+    public function excluir($id = null)
     {
         if ($this->input->method() == 'post') {
             $this->load->model('bloco_model', 'bm');
@@ -82,7 +82,7 @@ class Bloco extends CI_Controller
             $bloco = $this->bsm->fetch_one($id);
             $data['id'] = $bloco['id'];
             $data['descricao'] = $bloco['id'].' - '.$bloco['nom'];
-            
+
         }
         $this->template->show('bloco', 'exclui',  $data);
     }

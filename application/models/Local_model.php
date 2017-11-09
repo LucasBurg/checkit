@@ -1,8 +1,7 @@
 <?php
-class Pessoa_model extends CI_Model
+class Local_model extends CI_Model
 {
-
-    private $tabela = 'pessoa';
+    private $tabela = 'local';
 
     public function __construct()
     {
@@ -14,9 +13,8 @@ class Pessoa_model extends CI_Model
         if (empty($id)) {
             return $this->db->insert($this->tabela, $data);
         }
-        $this->db->where('id', $id);
+        $this->db->where('id',$id);
         return $this->db->update($this->tabela, $data);
-
     }
 
     public function excluir($id)
