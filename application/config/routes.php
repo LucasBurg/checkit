@@ -53,3 +53,4 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['pessoa/(:num)'] = 'pessoa/index/$1';
+$route['bloco/(:num)'] = 'bloco/index/$1';
