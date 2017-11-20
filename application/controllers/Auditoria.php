@@ -1,29 +1,28 @@
 <?php
 class Auditoria extends CI_Controller
 {
-   function __construct()
+   public function __construct()
    {
-     parent::__construct();
-
+       parent::__construct();
    }
 
-   function index()
+   public function index()
    {
-     $this->load->library('template');
-     $this->template->show('auditoria','index');
+       $this->load->library('template');
+       $this->template->show('auditoria','index');
    }
 
-   function post()
-   {
-
-   }
-
-   function salvar()
+   public function post()
    {
 
    }
 
-   function excluir()
+   public function salvar()
+   {
+
+   }
+
+   public function excluir()
    {
 
    }
