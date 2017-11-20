@@ -1,12 +1,12 @@
 <?php
 $pessoa = null;
 if (!empty($page_var)) {
-    //var_dump($page_var);
     $pessoa = $page_var['pessoa'];
 }
 ?>
 <div>
-    <?=form_open(base_url("/pessoa/{$pessoa['id']}"), array('autocomplete' => 'off'))?>
+    <?=form_open(current_url(), array('autocomplete' => 'off'))?>
+    <?=form_hidden('id', (isset($pessoa['id'])) ? $pessoa['id'] : '')?>
     <table>
         <tbody>
             <tr>
